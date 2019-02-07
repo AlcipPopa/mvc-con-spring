@@ -1,9 +1,9 @@
 package eu.alchip.repositories;
 
-import eu.alchip.model.User;
+import eu.alchip.model.AppUser;
 
 import java.util.List;
 
 public interface UserRepository {
-    List<User> findUser(String mail);
+    List<AppUser> findUser(String mail);
 }

@@ -4,13 +4,15 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Data
 @Entity
-public class User {
+public class AppUser {
 
     @NonNull
     @Id
@@ -21,5 +23,6 @@ public class User {
     private String surname;
     private String password;
 
-
+    @OneToMany
+    private Set<Avatar> avatar;
 }
