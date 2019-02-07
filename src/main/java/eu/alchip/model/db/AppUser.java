@@ -1,4 +1,4 @@
-package eu.alchip.model;
+package eu.alchip.model.db;
 
 import lombok.*;
 

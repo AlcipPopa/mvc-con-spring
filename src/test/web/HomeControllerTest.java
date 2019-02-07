@@ -1,6 +1,6 @@
 package web;
 
-import eu.alchip.web.HomeController;
+import eu.alchip.controllers.HomeController;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
