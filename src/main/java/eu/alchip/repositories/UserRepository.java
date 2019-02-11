@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<AppUser, Long> {
     List<AppUser> findUser(String mail);
+
+
 }
