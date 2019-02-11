@@ -62,7 +62,7 @@ public class HibernateConfig {
                 new LocalContainerEntityManagerFactoryBean();
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
-        emfb.setPackagesToScan("eu.alchip.model.db");
+        emfb.setPackagesToScan("eu.alchip.model.dto");
         emfb.afterPropertiesSet();
         emfb.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
         return emfb.getObject();

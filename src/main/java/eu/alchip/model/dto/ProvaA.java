@@ -1,4 +1,4 @@
-package eu.alchip.model.db;
+package eu.alchip.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -14,17 +13,12 @@ import java.util.Set;
 @ToString
 @Data
 @Entity
-public class Post {
-
+public class ProvaA {
     @Id
     private int id;
-    private String title;
-    private String body;
-    private Date creationDate;
+    private String attributo1;
+    private String attributo2;
 
     @ManyToOne
-    private AppUser appUser;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<Image> image;
+    private ProvaB elencoB;
 }

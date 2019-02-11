@@ -1,10 +1,13 @@
 package eu.alchip.model.db;
 
 import lombok.*;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Set;
 
 @NoArgsConstructor
@@ -12,6 +15,8 @@ import java.util.Set;
 @ToString
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name = "tick")
 public class AppUser {
 
     @NonNull
@@ -24,5 +29,18 @@ public class AppUser {
     private String password;
 
     @OneToMany
+    //@ManyToOne
     private Set<Avatar> avatar;
+    //private Avatar avatar;
+
+
+    public AppUser(@NonNull String email, int age, String job, String name, String surname, String password, Set<Avatar> avatar) {
+        this.email = email;
+        this.age = age;
+        this.job = job;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.avatar = avatar;
+    }
 }

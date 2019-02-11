@@ -13,15 +13,6 @@ import javax.persistence.*;
 @ToString
 @Data
 @Entity
-public class Avatar {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
-    private String pixelDimensions;
-    private int kbWeight;
-
-    @ManyToOne
-    @JoinColumn(name = "appUser")
-    private AppUser appUser;
+public class AdminUser extends AppUser {
+    private String badgeAdmin;
 }
