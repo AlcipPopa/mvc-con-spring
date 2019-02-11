@@ -16,4 +16,7 @@ public class AppUserDTO {
     private String name;
     private String surname;
     private String password;
+    
+//    private Set<Avatar> avatar;
+    
 }
