@@ -68,16 +68,6 @@ public class HibernateConfig {
     }
 
 
-    /*
-    @Bean
-    public PlatformTransactionManager hibernateTransactionManager() {
-        HibernateTransactionManager transactionManager
-                = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    } */
-
-
     @Bean
     public PlatformTransactionManager transactionManager(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         EntityManagerFactory factory = entityManagerFactory(dataSource, jpaVendorAdapter);

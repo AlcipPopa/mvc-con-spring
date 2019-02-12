@@ -1,7 +1,6 @@
 package eu.alchip.config;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,48 +24,34 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @ComponentScan("eu.alchip.controllers")
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    ApplicationContext applicationContext;
 
     @Bean
-    public SpringResourceTemplateResolver springTemplateResolver(){
+    public SpringResourceTemplateResolver springTemplateResolver(ApplicationContext applicationContext){
         SpringResourceTemplateResolver springTemplateResolver = new SpringResourceTemplateResolver();
         springTemplateResolver.setApplicationContext(applicationContext);
         springTemplateResolver.setPrefix("/WEB-INF/templates/");
         springTemplateResolver.setSuffix(".html");
+
         return springTemplateResolver;
     }
 
     @Bean
-    public SpringTemplateEngine springTemplateEngine(){
+    public SpringTemplateEngine springTemplateEngine(ApplicationContext applicationContext){
         SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
-        springTemplateEngine.setTemplateResolver(springTemplateResolver());
+        springTemplateEngine.setTemplateResolver(springTemplateResolver(applicationContext));
         return springTemplateEngine;
     }
 
 
     @Bean
-    public ViewResolver viewResolver() {
+    public ViewResolver viewResolver(ApplicationContext applicationContext) {
         ThymeleafViewResolver resolver =
                 new ThymeleafViewResolver();
-        resolver.setTemplateEngine(springTemplateEngine());
+        resolver.setTemplateEngine(springTemplateEngine(applicationContext));
         return resolver;
     }
 
 
-    /*
-
-    @Bean
-    @Description("Thymeleaf Template Resolver")
-    public ServletContextTemplateResolver templateResolver(ServletContext context) {
-        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(context);
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
-
-        return templateResolver;
-
-    }*/
 
 
     // configuratore dei contenuti statici:
