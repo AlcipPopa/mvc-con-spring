@@ -21,6 +21,7 @@ public class HomeController {
     public String index(){
         return "index";
     }
+
     
     @PostMapping("/register")
     public String registra(@RequestBody AppUserDTO user) {

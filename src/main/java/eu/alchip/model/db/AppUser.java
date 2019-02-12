@@ -2,9 +2,7 @@ package eu.alchip.model.db;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -12,6 +10,7 @@ import java.util.Set;
 @ToString
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AppUser {
 
     @NonNull
@@ -24,5 +23,8 @@ public class AppUser {
     private String password;
 
     @OneToMany
+    //@ManyToOne
     private Set<Avatar> avatar;
+    //private Avatar avatar;
+
 }

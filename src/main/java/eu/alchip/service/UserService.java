@@ -2,6 +2,7 @@ package eu.alchip.service;
 
 import java.util.Optional;
 
+import eu.alchip.model.db.NormalUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    
     public void registerUser(AppUserDTO user) {
-    	AppUser newUser = new AppUser(user.getEmail(), user.getAge(), user.getJob(), user.getName(), 
+    	AppUser newUser = new AppUser (user.getEmail(), user.getAge(), user.getJob(), user.getName(),
     			user.getSurname(), passwordEncoder.encode(user.getPassword()), null);
     	userRepository.save(newUser);
     }
@@ -36,6 +36,4 @@ public class UserService {
     	
     	return user;
     }
-
-
 }

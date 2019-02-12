@@ -5,12 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +25,6 @@ public class Post {
     @ManyToOne
     private AppUser appUser;
 
-    @OneToMany
-    private List<Image> image;
-
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Image> image;
 }

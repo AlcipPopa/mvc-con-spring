@@ -1,37 +1,62 @@
 package eu.alchip.config;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Description;
+
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-import javax.servlet.ServletContext;
+
 
 /**
  * Classe utile per la gestione della VIEW
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("eu.alchip.web")
-public class WebConfig extends WebMvcConfigurerAdapter {
+@ComponentScan("eu.alchip.controllers")
+public class WebConfig implements WebMvcConfigurer {
 
-    // configuratore delle pagine per la view
+    @Autowired
+    ApplicationContext applicationContext;
+
+    @Bean
+    public SpringResourceTemplateResolver springTemplateResolver(){
+        SpringResourceTemplateResolver springTemplateResolver = new SpringResourceTemplateResolver();
+        springTemplateResolver.setApplicationContext(applicationContext);
+        springTemplateResolver.setPrefix("/WEB-INF/templates/");
+        springTemplateResolver.setSuffix(".html");
+        return springTemplateResolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine springTemplateEngine(){
+        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+        springTemplateEngine.setTemplateResolver(springTemplateResolver());
+        return springTemplateEngine;
+    }
+
+
     @Bean
     public ViewResolver viewResolver() {
-        InternalResourceViewResolver resolver =
-                new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
-        resolver.setExposeContextBeansAsAttributes(true);
+        ThymeleafViewResolver resolver =
+                new ThymeleafViewResolver();
+        resolver.setTemplateEngine(springTemplateEngine());
         return resolver;
     }
 
+
+
+
+    /*
     @Bean
     @Description("Thymeleaf Template Resolver")
     public ServletContextTemplateResolver templateResolver(ServletContext context) {
@@ -41,7 +66,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         templateResolver.setTemplateMode("HTML5");
 
         return templateResolver;
-    }
+    }*/
+
+
 
     // configuratore dei contenuti statici:
     // asking DispatcherServlet to forward
