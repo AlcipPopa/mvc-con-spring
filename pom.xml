@@ -11,7 +11,9 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8 </target>
@@ -111,19 +113,21 @@
             <version>3.0.9.RELEASE</version>
         </dependency>
 
+
+        <!-- Dipendenze per FRONTEND-->
         <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring5</artifactId>
-            <version>3.0.11.RELEASE</version>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.2.1</version>
         </dependency>
 
-
-        <!-- PER VISUALIZZARE LE JSP CON I TAGLIB -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.3.1</version>
         </dependency>
+
+        <!-- Dipendenze per TESTS-->
 
         <dependency>
             <groupId>org.springframework</groupId>
