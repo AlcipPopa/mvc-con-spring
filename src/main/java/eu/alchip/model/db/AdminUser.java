@@ -1,18 +1,17 @@
 package eu.alchip.model.db;
 
-import eu.alchip.model.db.AppUser;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.*;
+import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Data
-@Entity
+//@Entity
 public class AdminUser extends AppUser {
     private String badgeAdmin;
+
+    public AdminUser(@NonNull String email, int age, String job, String name, String surname, String password, Set<Avatar> avatar, String badgeAdmin) {
+        super(email, age, job, name, surname, password, avatar);
+        this.badgeAdmin = badgeAdmin;
+    }
 }

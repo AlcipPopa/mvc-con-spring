@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-
 
 
 /**
@@ -54,9 +54,8 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 
-
-
     /*
+
     @Bean
     @Description("Thymeleaf Template Resolver")
     public ServletContextTemplateResolver templateResolver(ServletContext context) {
@@ -66,8 +65,8 @@ public class WebConfig implements WebMvcConfigurer {
         templateResolver.setTemplateMode("HTML5");
 
         return templateResolver;
-    }*/
 
+    }*/
 
 
     // configuratore dei contenuti statici:

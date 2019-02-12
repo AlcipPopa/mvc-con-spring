@@ -5,12 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class AppUser {
 
     @NonNull
@@ -23,8 +20,15 @@ public class AppUser {
     private String password;
 
     @OneToMany
-    //@ManyToOne
     private Set<Avatar> avatar;
-    //private Avatar avatar;
 
+    public AppUser(@NonNull String email, int age, String job, String name, String surname, String password, Set<Avatar> avatar) {
+        this.email = email;
+        this.age = age;
+        this.job = job;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.avatar = avatar;
+    }
 }

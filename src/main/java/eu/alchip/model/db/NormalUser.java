@@ -1,17 +1,17 @@
 package eu.alchip.model.db;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Entity;
+import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Data
-@Entity
+//@Entity
 public class NormalUser extends AppUser {
     private String badgeNormale;
+
+    public NormalUser(@NonNull String email, int age, String job, String name, String surname, String password, Set<Avatar> avatar, String badgeNormale) {
+        super(email, age, job, name, surname, password, avatar);
+        this.badgeNormale = badgeNormale;
+    }
 }

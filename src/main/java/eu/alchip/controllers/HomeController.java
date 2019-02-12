@@ -22,7 +22,7 @@ public class HomeController {
         return "index";
     }
 
-    
+
     @PostMapping("/register")
     public String registra(@RequestBody AppUserDTO user) {
         userService.registerUser(user);
