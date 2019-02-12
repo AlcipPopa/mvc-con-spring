@@ -24,7 +24,12 @@ public class HomeController {
     
     @PostMapping("/register")
     public String registra(@RequestBody AppUserDTO user) {
-    	userService.registerUser(user);
-    	return "success";
+        userService.registerUser(user);
+        return "success";
+    }
+
+    @GetMapping("/indice")
+    public String indice(){
+        return "indice";
     }
 }
