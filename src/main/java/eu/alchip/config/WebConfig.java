@@ -9,7 +9,10 @@ import org.springframework.core.SpringProperties;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.EncodedResourceResolver;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -51,13 +54,25 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 
-
+    // aggiunge pattern personalizzati delle risorse statiche,
+    // setta la durata Cache in secondi ed eventualmente
+    // comunica i header in formato compresso con EncodedResourceResolver()
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/css/**")
+                .addResourceLocations("/WEB-INF/resources/css/")
+                .setCachePeriod(3600)
+                .resourceChain(true)
+                .addResolver(new EncodedResourceResolver())
+                .addResolver(new PathResourceResolver());
+    }
 
     // configuratore dei contenuti statici:
     // asking DispatcherServlet to forward
     // requests for static resources to the servlet container’s default servlet and not to try to
     // handle them itself.
-    @Override
+     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }

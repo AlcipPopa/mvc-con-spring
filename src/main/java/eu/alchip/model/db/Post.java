@@ -20,7 +20,12 @@ public class Post {
     private int id;
     private String title;
     private String body;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date creationDate;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date modifiedDate;
 
     @ManyToOne
     private AppUser appUser;

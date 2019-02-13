@@ -1,12 +1,12 @@
 package eu.alchip.model.db;
 
-import eu.alchip.model.db.AppUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +21,9 @@ public class Avatar {
     private String pixelDimensions;
     private int kbWeight;
 
-    @ManyToOne
-    @JoinColumn(name = "appUser")
-    private AppUser appUser;
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date creationDate;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date lastUsedDate;
 }
