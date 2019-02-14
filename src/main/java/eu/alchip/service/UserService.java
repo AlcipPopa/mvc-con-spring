@@ -1,5 +1,6 @@
 package eu.alchip.service;
 
+import eu.alchip.exceptions.NoUserFoundException;
 import eu.alchip.model.db.AppUser;
 import eu.alchip.model.dto.AppUserDTO;
 import eu.alchip.repositories.UserRepository;
@@ -46,7 +47,7 @@ public class UserService {
     	if (queryResult.isPresent()){
 			userFound = queryResult.get();
 		} else {
-    		return false;
+    		throw new NoUserFoundException();
 		}
 
     	return passwordEncoder.matches(user.getPassword(), userFound.getPassword());
