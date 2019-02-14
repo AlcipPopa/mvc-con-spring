@@ -60,8 +60,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/css/**")
-                .addResourceLocations("/WEB-INF/resources/css/")
+                .addResourceHandler("/css/**", "/img/**")
+                .addResourceLocations("/WEB-INF/resources/css/", "/WEB-INF/resources/img/")
                 .setCachePeriod(3600)
                 .resourceChain(true)
                 .addResolver(new EncodedResourceResolver())
