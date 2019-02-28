@@ -10,13 +10,10 @@ import lombok.ToString;
 
 import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name = "tick")
 public class AppUser {
 
     @NonNull
@@ -33,6 +30,9 @@ public class AppUser {
     private Set<Avatar> avatar;
     //private Avatar avatar;
 
+
+    public AppUser() {
+    }
 
     public AppUser(@NonNull String email, int age, String job, String name, String surname, String password, Set<Avatar> avatar) {
         this.email = email;

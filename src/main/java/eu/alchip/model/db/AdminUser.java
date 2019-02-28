@@ -1,10 +1,7 @@
 package eu.alchip.model.db;
 
 import eu.alchip.model.db.AppUser;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,9 @@ import javax.persistence.*;
 @ToString
 @Data
 @Entity
+@EqualsAndHashCode
 public class AdminUser extends AppUser {
     private String badgeAdmin;
+
+
 }

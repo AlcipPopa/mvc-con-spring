@@ -23,7 +23,7 @@ public class HomeController {
     }
 
     
-    @PostMapping("/register")
+    @PostMapping("register")
     public String registra(@RequestBody AppUserDTO user) {
     	userService.registerUser(user);
     	return "success";
