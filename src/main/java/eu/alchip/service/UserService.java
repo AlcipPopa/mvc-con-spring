@@ -15,6 +15,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 	Logger logger = LoggerFactory.getLogger(UserService.class);
+	@Autowired
+	private ShoppingCart shoppingCart;
 
     @Autowired
     private UserRepository userRepository;
@@ -23,6 +25,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     
     public void registerUser(AppUserDTO user) {
+		shoppingCart.setEmail(user.getEmail());
 
     	AppUser newUser = new AppUser(user.getEmail(), user.getAge(), user.getJob(), user.getName(),
     			user.getSurname(), passwordEncoder.encode(user.getPassword()), null);
