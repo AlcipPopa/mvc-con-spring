@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -23,7 +20,9 @@ public class Image {
     private int id;
 
     private String location;
-    private Date date;
-    private Date hour;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date creationDate;
+
     private String title;
 }

@@ -9,22 +9,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-public class MainInitializer implements WebApplicationInitializer {//extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MainInitializer implements WebApplicationInitializer {
 
-    /*@Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class };
-    }
 
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebConfig.class };
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[] { "/" };
-    }*/
 
     public void onStartup(final ServletContext sc) {
 
