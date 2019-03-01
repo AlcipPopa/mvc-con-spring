@@ -1,6 +1,7 @@
 package eu.alchip.service;
 
 import eu.alchip.exceptions.NoUserFoundException;
+import eu.alchip.exceptions.UserAlreadyRegisteredException;
 import eu.alchip.model.db.AdminUser;
 import eu.alchip.model.db.AppUser;
 import eu.alchip.model.dto.AppUserDTO;
@@ -30,13 +31,15 @@ public class UserService {
     public void registerUser(AppUserDTO user) {
     	AppUser newUser = new AdminUser(user.getUsername(), user.getAge(), user.getJob(), user.getName(),
     			user.getSurname(), passwordEncoder.encode(user.getPassword()), null, true);
-    	if (userRepository.save(newUser) != null){
+		if (userRepository.findById(newUser.getUsername()).isPresent()){
+			throw new UserAlreadyRegisteredException("Utente gia registrato!");
+		} else if (userRepository.save(newUser) != null){
 			userI.setUsername(user.getUsername());
 		}
     }
     
-    public AppUser getUser(String email) {
-    	Optional<AppUser> optional = userRepository.findById(email);
+    public AppUser getUser(String username) {
+    	Optional<AppUser> optional = userRepository.findById(username);
     	AppUser user = null;
     	
     	if (optional.isPresent()) {

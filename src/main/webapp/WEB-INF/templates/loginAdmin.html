@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Registered</title>
     <link rel="icon" href="/img/favicon.ico">
+    <title>Login</title>
 </head>
 <body>
-    <h1>You are now registered <div th:text="${utente.username}"></div></h1>
+    <h1>You just logged <p th:text="${utente.username}"></p></h1>
     <p><a href="#" th:href="@{/}">Home</a></p>
 </body>
 </html>

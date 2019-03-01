@@ -27,7 +27,7 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 	
-    @GetMapping("")
+    @GetMapping({"","logout"})
     public String index(){
         return "index";
     }
