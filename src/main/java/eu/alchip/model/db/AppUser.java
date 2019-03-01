@@ -15,12 +15,12 @@ public class AppUser {
 
     @NonNull
     @Id
-    private String email;
+    private String username;
     private Integer age;
     private String job;
     private String name;
     private String surname;
-
+    private boolean active;
 
     private String password;
 
@@ -32,22 +32,23 @@ public class AppUser {
 
     }
 
-    public AppUser(@NonNull String email, int age, String job, String name, String surname, String password, Avatar avatar) {
-        this.email = email;
+    public AppUser(@NonNull String username, int age, String job, String name, String surname, String password, Avatar avatar, boolean active) {
+        this.username = username;
         this.age = age;
         this.job = job;
         this.name = name;
         this.surname = surname;
         this.password = password;
         this.avatar = avatar;
+        this.active = active;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getAge() {
@@ -96,5 +97,13 @@ public class AppUser {
 
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -2,21 +2,27 @@ package eu.alchip.model.db;
 
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
+
 import javax.persistence.Entity;
 
 @ToString
 @Data
 @Entity
-@EqualsAndHashCode
 public class AdminUser extends AppUser {
-    private String badgeAdmin;
+    private String authority;
 
+    public AdminUser(){
 
-    public AdminUser(@NonNull String email, int age, String job, String name, String surname, String password, Avatar avatar, String badgeAdmin) {
-        super(email, age, job, name, surname, password, avatar);
-        this.badgeAdmin = badgeAdmin;
     }
+
+    public AdminUser(@NonNull String username, int age, String job, String name, String surname, String password, Avatar avatar, boolean active) {
+        super(username, age, job, name, surname, password, avatar, active);
+        this.authority = "ROLE_ADMIN";
+    }
+
+
+
+
 }

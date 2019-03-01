@@ -1,14 +1,14 @@
 package eu.alchip.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import eu.alchip.model.db.Avatar;
+import eu.alchip.session.AppUserI;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Set;
 
@@ -16,27 +16,37 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 @Data
-public class AppUserDTO {
-    private String email;
+@Component
+public class AppUserDTO implements AppUserI {
+    @JsonProperty("username")
+    private String username;
+    @JsonProperty("age")
     private int age;
+    @JsonProperty("job")
     private String job;
+    @JsonProperty("user_name")
     private String name;
+    @JsonProperty("user_surname")
     private String surname;
+    @JsonProperty("active")
+    private boolean active;
+
+    @JsonIgnore
     private String password;
     
     private Set<Avatar> avatar;
 
-    public AppUserDTO(String email, String password) {
-        this.email = email;
+    public AppUserDTO(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getAge() {
@@ -85,5 +95,13 @@ public class AppUserDTO {
 
     public void setAvatar(Set<Avatar> avatar) {
         this.avatar = avatar;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

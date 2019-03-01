@@ -2,22 +2,23 @@ package eu.alchip.model.db;
 
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 import lombok.ToString;
 
 import javax.persistence.Entity;
-import java.util.Objects;
 
 @ToString
 @Data
 @Entity
-@EqualsAndHashCode
 public class NormalUser extends AppUser {
-    private String badgeNormale;
+    private String authority;
 
-    public NormalUser(@NonNull String email, int age, String job, String name, String surname, String password, Avatar avatar, String badgeNormale) {
-        super(email, age, job, name, surname, password, avatar);
-        this.badgeNormale = badgeNormale;
+    public NormalUser(){
+
+    }
+
+    public NormalUser(@NonNull String username, int age, String job, String name, String surname, String password, Avatar avatar, boolean active) {
+        super(username, age, job, name, surname, password, avatar, active);
+        this.authority = "ROLE_NORMAL";
     }
 }

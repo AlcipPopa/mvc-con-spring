@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <form action="#" class="form-signin" method="post" th:action="@{~/register}" th:object="${utente}">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Floating labels</h1>
+            <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a></p>
+        </div>
+
+        <div class="form-label-group">
+            <input name="username" type="email" id="regEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="regEmail">Email address</label>
+        </div>
+
+        <div class="form-label-group">
+            <input name="password" type="password" id="regPassword" class="form-control" placeholder="Password" required>
+            <label for="regPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register me</button>
+    </form>
+</body>
+</html>

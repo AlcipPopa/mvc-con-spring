@@ -1,9 +1,11 @@
 package eu.alchip.service;
 
 import eu.alchip.exceptions.NoUserFoundException;
+import eu.alchip.model.db.AdminUser;
 import eu.alchip.model.db.AppUser;
 import eu.alchip.model.dto.AppUserDTO;
 import eu.alchip.repositories.UserRepository;
+import eu.alchip.session.AppUserI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,9 @@ import java.util.Optional;
 @Service
 public class UserService {
 	Logger logger = LoggerFactory.getLogger(UserService.class);
+
 	@Autowired
-	private ShoppingCart shoppingCart;
+	private AppUserI userI;
 
     @Autowired
     private UserRepository userRepository;
@@ -25,11 +28,11 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     
     public void registerUser(AppUserDTO user) {
-		shoppingCart.setEmail(user.getEmail());
-
-    	AppUser newUser = new AppUser(user.getEmail(), user.getAge(), user.getJob(), user.getName(),
-    			user.getSurname(), passwordEncoder.encode(user.getPassword()), null);
-    	userRepository.save(newUser);
+    	AppUser newUser = new AdminUser(user.getUsername(), user.getAge(), user.getJob(), user.getName(),
+    			user.getSurname(), passwordEncoder.encode(user.getPassword()), null, true);
+    	if (userRepository.save(newUser) != null){
+			userI.setUsername(user.getUsername());
+		}
     }
     
     public AppUser getUser(String email) {
@@ -44,7 +47,7 @@ public class UserService {
     }
 
     public boolean isAuthenticated(AppUserDTO user){
-    	Optional<AppUser> queryResult = userRepository.findById(user.getEmail());
+    	Optional<AppUser> queryResult = userRepository.findById(user.getUsername());
     	AppUser userFound = null;
 
     	if (queryResult.isPresent()){

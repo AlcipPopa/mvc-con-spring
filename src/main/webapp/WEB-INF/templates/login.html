@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <form action="#" class="form-signin" method="post" th:action="@{http://localhost:8080/login}" >
+            <div class="text-center mb-4">
+                <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            </div>
+
+            <div class="form-label-group">
+                <input name="username" type="email" id="email" class="form-control" placeholder="Email address" required autofocus>
+                <label for="email">Email address</label>
+            </div>
+
+            <div class="form-label-group">
+                <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log me</button>
+
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+        </form>
+    </div>
+
+    <div th:if="${utente.email != null}">
+        <p>You are already logged <span th:text="${utente.email}"></span></p>
+    </div>
+</body>
+</html>
